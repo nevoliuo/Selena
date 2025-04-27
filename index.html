@@ -41,7 +41,7 @@
 
     .moon-news-section {
         width: 400px;
-        margin-top: -50px;
+        margin-top: -20px;
     }
 
     @media (max-width: 1200px) {
@@ -113,7 +113,7 @@
 
     .chart-container {
       position: relative;
-      height: 400px;
+      height: 460px;
       width: 100%;
     }
 
@@ -380,6 +380,7 @@
 
 /* Основной блок вывода */
 .conclusion {
+  display: none; /* Скрываем блок по умолчанию */
     background: rgba(255, 255, 255, 0.92);
     padding: 20px;
     border-radius: 16px;
@@ -1312,18 +1313,20 @@ function analyzeParticipant(participant) {
     const correlationChartWrapper = document.getElementById('correlation-chart-wrapper');
 
     showCycleChartBtn.addEventListener('click', () => {
-      showCycleChartBtn.classList.add('active');
-      showCorrelationChartBtn.classList.remove('active');
-      cycleChartWrapper.style.display = 'block';
-      correlationChartWrapper.style.display = 'none';
-    });
+    showCycleChartBtn.classList.add('active');
+    showCorrelationChartBtn.classList.remove('active');
+    cycleChartWrapper.style.display = 'block';
+    correlationChartWrapper.style.display = 'none';
+    document.getElementById('conclusion').style.display = 'none';
+});
 
-    showCorrelationChartBtn.addEventListener('click', () => {
-      showCorrelationChartBtn.classList.add('active');
-      showCycleChartBtn.classList.remove('active');
-      cycleChartWrapper.style.display = 'none';
-      correlationChartWrapper.style.display = 'block';
-    });
+showCorrelationChartBtn.addEventListener('click', () => {
+    showCorrelationChartBtn.classList.add('active');
+    showCycleChartBtn.classList.remove('active');
+    cycleChartWrapper.style.display = 'none';
+    correlationChartWrapper.style.display = 'block';
+    document.getElementById('conclusion').style.display = 'block';
+});
 
      // Инициализация при загрузке
      window.addEventListener('load', () => {
