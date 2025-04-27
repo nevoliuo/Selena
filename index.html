@@ -541,6 +541,228 @@
         flex-direction: column;
       }
     }
+
+    /* ===== Общие стили для контролов ===== */
+.controls {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(214, 51, 132, 0.08);
+  border: 1px solid rgba(255, 204, 230, 0.6);
+}
+
+.controls h3 {
+  color: var(--pink-dark);
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+/* ===== Стили чекбоксов ===== */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 32px;
+  margin-right: 15px;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.checkbox-group input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border: 2px solid var(--pink-medium);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.checkbox-group label:hover .checkbox-custom {
+  border-color: var(--pink-dark);
+  transform: scale(1.05);
+}
+
+.checkbox-group input:checked ~ .checkbox-custom {
+  background-color: var(--pink-dark);
+  border-color: var(--pink-dark);
+}
+
+.checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-group input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
+.checkbox-group span {
+  color: var(--purple);
+  font-size: 0.95em;
+  margin-left: 8px;
+}
+
+/* ===== Стили кнопок ===== */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: var(--pink-medium);
+  color: white;
+  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.1);
+}
+
+.button-group button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.2);
+  background: var(--pink-dark);
+}
+
+.button-group button:active {
+  transform: translateY(0);
+}
+
+#select-all {
+  background: var(--purple-light);
+}
+
+#deselect-all {
+  background: white;
+  color: var(--pink-dark);
+  border: 1px solid var(--pink-medium);
+}
+
+/* ===== Адаптация ===== */
+@media (max-width: 768px) {
+  .checkbox-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .button-group button {
+    width: 100%;
+  }
+}
+
+/* Добавьте эти стили в ваш CSS */
+#checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+#checkboxes label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 32px;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+#checkboxes input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+#checkboxes .checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border: 2px solid var(--pink-medium);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+#checkboxes label:hover .checkbox-custom {
+  border-color: var(--pink-dark);
+  transform: scale(1.05);
+}
+
+#checkboxes input:checked ~ .checkbox-custom {
+  background-color: var(--pink-dark);
+  border-color: var(--pink-dark);
+}
+
+#checkboxes .checkbox-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+#checkboxes input:checked ~ .checkbox-custom:after {
+  display: block;
+}
+
+#checkboxes .participant-name {
+  color: var(--purple);
+  font-size: 0.95em;
+  margin-left: 8px;
+}
+span{
+  color: #d63384;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
   </style>
 </head>
 <body>
@@ -556,7 +778,7 @@
           <div class="charts-section">
             <div class="chart-wrapper" id="cycle-chart-wrapper">
                 <div class="controls">
-                    <label for="center-date">Выберите дату:</label>
+                    <span>Выберите дату:</span>
                     <input type="date" id="center-date" class="date-input">
                     <div class="checkbox-group" id="checkboxes"></div>
                 </div>
@@ -951,27 +1173,24 @@
     }
 
     function setupCheckboxes() {
-      checkboxes.innerHTML = "";
-      participantsData.forEach(girl => {
-        const label = document.createElement("label");
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = `cb-${girl.name}`;
-        checkbox.checked = true;
-        checkbox.addEventListener("change", () => {
-          drawCycleChart(centerDateInput.value);
-          updateCorrelationChart();
-        });
-        label.appendChild(checkbox);
-
-        const span = document.createElement("span");
-        span.textContent = girl.name;
-        span.style.color = girl.color;
-        label.appendChild(span);
-
-        checkboxes.appendChild(label);
-      });
-    }
+  checkboxes.innerHTML = "";
+  participantsData.forEach(girl => {
+    const label = document.createElement("label");
+    label.innerHTML = `
+      <input type="checkbox" id="cb-${girl.name}" checked>
+      <span class="checkbox-custom"></span>
+      <span class="participant-name">${girl.name}</span>
+    `;
+    
+    const checkbox = label.querySelector("input");
+    checkbox.addEventListener("change", () => {
+      drawCycleChart(centerDateInput.value);
+      updateCorrelationChart();
+    });
+    
+    checkboxes.appendChild(label);
+  });
+}
 
     centerDateInput.value = formatDate(new Date());
     centerDateInput.addEventListener("change", () => drawCycleChart(centerDateInput.value));
@@ -1273,21 +1492,31 @@ function analyzeParticipant(participant) {
       conclusionDiv.innerHTML = createConclusion(analyses);
     }
 
-    function setupParticipantsCheckboxes() {
-      participantsCheckbox.innerHTML = '';
-      participantsData.forEach(participant => {
-        const div = document.createElement('div');
-        div.innerHTML = `
-            <input type="checkbox" id="${participant.name}" name="${participant.name}" checked>
-            <label for="${participant.name}">${participant.name}</label>
-        `;
-        participantsCheckbox.appendChild(div);
-      });
+// Оберните кнопки в контейнер (если его нет)
+const buttonGroup = document.createElement('div');
+buttonGroup.className = 'button-group';
+buttonGroup.appendChild(selectAllBtn);
+buttonGroup.appendChild(deselectAllBtn);
+participantsCheckbox.parentNode.insertBefore(buttonGroup, participantsCheckbox.nextSibling);
+
+// Обновите HTML для чекбоксов в setupParticipantsCheckboxes():
+function setupParticipantsCheckboxes() {
+  participantsCheckbox.innerHTML = '';
+  participantsData.forEach(participant => {
+    const label = document.createElement('label');
+    label.innerHTML = `
+      <input type="checkbox" id="${participant.name}" checked>
+      <span class="checkbox-custom"></span>
+      <span class="participant-name">${participant.name}</span>
+    `;
+    participantsCheckbox.appendChild(label);
+    label.querySelector('input').addEventListener('change', updateCorrelationChart);
+  });
+}
       
       document.querySelectorAll('#participants-checkbox input').forEach(checkbox => {
         checkbox.addEventListener('change', updateCorrelationChart);
       });
-    }
 
     selectAllBtn.addEventListener('click', () => {
       document.querySelectorAll('#participants-checkbox input').forEach(checkbox => {
